@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: 'AwtsmoosifcationMonsterrat'; /* The name you'll use to refer to the font */
-    src: url('/app/fonts/Monsteratt/Montserrat-VariableFont_wght.ttf') format('truetype'); /* Path to your .ttf file */
+    src: url('/shlichusApp/fonts/Monsteratt/Montserrat-VariableFont_wght.ttf') format('truetype'); /* Path to your .ttf file */
     
 }
     body {
