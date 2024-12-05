@@ -1,0 +1,225 @@
+<!--B"H-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="manifest" href="/app/manifest.json">
+  <meta name="theme-color" content="#000000">
+ <script src="./servicer.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+      <link rel="stylesheet" type="text/css" href="./settings-styles.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="back-nav">
+    <img src="./img/left-arrow.svg" class="btn">
+    </div>
+    <div class="logo img-container ">
+    <img src="./img/logo.png" class="btn"></div>
+
+
+    <div class="profile-edit ">
+    <img src="./img/profile.png" class="btn">
+    <div class="name-details">
+        <div class="col">
+            <div class="item-label">
+                Name
+            </div>
+            <div class="item-value" id="nameVal">
+                
+            </div>
+        </div>
+        <div class="col">
+            <div class="item-label">
+                Email
+            </div>
+            <div class="item-value" id="emailVal">
+                Name
+            </div>
+        </div>
+    </div>
+
+    <img src="./img/edit.svg" class="btn">
+    </div>
+    <div class="logout-holder">
+    <img src="./img/logout.svg" id="logoutBtn" class="btn logout">
+    </div>
+
+
+    <div class="settings-options">
+    <div class="settings-option">
+        <div class="op-info">
+        <div class = "icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="33.621" viewBox="0 0 21 33.621">
+            <g id="Group_526" data-name="Group 526" transform="translate(-87 -38.629)">
+                <g id="Icon_akar-arrow-forward" data-name="Icon akar-arrow-forward" transform="translate(89.618 40.75)">
+                <path id="Path_1097" data-name="Path 1097" d="M66.667,20.833,71.33,25.5,66.667,30.16" transform="translate(-54.542 -20.833)" fill="none" stroke="#8079d1" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                <path id="Path_1098" data-name="Path 1098" d="M29.288,41.667H21.827A9.327,9.327,0,0,0,12.5,50.993v.933" transform="translate(-12.5 -37.003)" fill="none" stroke="#8079d1" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                </g>
+                <text id="milesNum" data-name="3 m" transform="translate(87 69.25)" fill="#8079d1" font-size="10" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.05em"><tspan x="0" y="0">3 m</tspan></text>
+            </g>
+            </svg>
+        </div>
+        <div class="settings-op-label">
+            Daily Milestones
+        </div>
+        </div>
+        <div class="op-btn btn">
+        <img src="./img/edit.svg" id="milestoneView" class="btn">
+        </div>
+    </div>
+
+
+    <div class="settings-option">
+        <div class="op-info">
+        <div class = "icon">
+            <img src="./img/not-time.svg">
+        </div>
+        <div class="settings-op-label">
+            Set Reminder Time
+        </div>
+        </div>
+        <div class="op-btn btn">
+        <img src="./img/edit.svg" id="reminderBtn" class="btn">
+        </div>
+        </div>
+    <div class="settings-option">
+        <div class="op-info">
+            <div class = "icon">
+                <img id="leaderboardBtn" src="./img/leaderboard.svg">
+            </div>
+            <div class="settings-op-label">
+                Leaderboard
+            </div>
+        </div>
+        <div class="op-btn btn">
+            <img src="./img/view.svg" class="btn">
+        </div>
+        </div>
+    </div>
+    <div class="score-info">
+    <div class="score-label">
+        <img src="./img/score.svg">
+        <div class="score-txt">
+        My Score
+        </div>
+    </div>
+
+    <div class="point-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53">
+        <g id="Group_523" data-name="Group 523" transform="translate(-79 -44)">
+        <rect id="Rectangle_1533" data-name="Rectangle 1533" width="53" height="53" rx="8" transform="translate(79 44)" fill="#fff"/>
+        <g id="Rectangle_1531" data-name="Rectangle 1531" transform="translate(80 45)" fill="#fff" stroke="#4e4e4e" stroke-width="1.5">
+            <rect width="51" height="51" rx="7" stroke="none"/>
+            <rect x="0.75" y="0.75" width="49.5" height="49.5" rx="6.25" fill="none"/>
+        </g>
+        <text id="pointVal" data-name="3" transform="translate(99 73)" fill="#4e4e4e" font-size="23" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.05em"><tspan x="0" y="0">3</tspan></text>
+        <text id="Points" transform="translate(90 86)" fill="#4e4e4e" font-size="9" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.05em"><tspan x="0" y="0">Points</tspan></text>
+        </g>
+    </svg>
+
+    </div>
+    </div>
+
+
+    </div>
+    <link rel="stylesheet" type="text/css" href="./reminder.css">
+	<div class="reminder-container collapsed">
+	  <div class="reminder-drag">
+	  </div>
+	    <div class="reminder-header">
+	      <div class="rem-label">
+	          <img src="./img/not-time.svg">
+	          <div class="rem-txt">
+	            Set Reminder
+	          </div>
+	      </div>
+	
+	      <div class="nav-toggle">
+	        
+	      </div>
+	    </div>
+	    <div class="reminder-time-select">
+	      
+	    </div>
+	    <img src="./img/done.svg" id="reminderSet" class="rem-btm btn">
+
+
+   
+  </div>
+  <script src="reminder-nav.js"></script>
+  <script>
+console.log(
+    'B"H',
+    "\n\n\n\n"
+)
+var log = document.getElementById("logoutBtn");
+if(log) {
+    log.onclick = async () => {
+        var lg = await (
+            await fetch(
+                location.origin, {
+                   method: "POST",
+                   body: new URLSearchParams({
+                       action: "logout"
+                  })
+                }
+            )
+        )
+        console.log(lg)
+        location.href="./"
+    }
+}
+
+    var reminderBtn  = document.getElementById("reminderBtn")
+    reminderBtn.onclick = () => {
+        var rem = document.querySelector(".reminder-container");
+        if(rem) {
+            rem.classList.remove("collapsed")
+        }
+    }
+    reminderSet;
+    var reminderSet  = document.getElementById("reminderSet")
+    reminderSet.onclick = () => {
+        var rem = document.querySelector(".reminder-container");
+        var time = window?.getTime?.();
+        console.log("REMIDNER",time);
+        if(rem) {
+            rem.classList.add("collapsed")
+        }
+    }
+
+    var milestoneView  = document.getElementById("milestoneView");
+    milestoneView.onclick = () => {
+        location.href="./view-milestones.html"
+    }
+    var leaderboardBtn  = document.getElementById("leaderboardBtn");
+    leaderboardBtn.onclick = () => {
+        alert("Leaderboard");
+       // location.href="./view-milestones.html"
+    }
+    
+    (async () => {
+        var sesh = await (
+            await fetch(location.origin, {
+                method: "POST",
+                body: new URLSearchParams({
+                    action: "session"
+                })
+            })
+        ).json();
+        if(!sesh.success) {
+            location.href = "./sign-in.html"
+        }
+        window.SESSION = sesh.success;
+        emailVal.textContent = SESSION?.user_id;
+        nameVal.textContent = SESSION?.name;
+    })();
+
+
+ </script>
+</body>
+</html>

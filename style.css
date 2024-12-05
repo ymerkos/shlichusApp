@@ -1,0 +1,174 @@
+/**B"H*/
+/* Overall page and container styling */
+
+@font-face {
+    font-family: 'AwtsmoosifcationMonsterrat'; /* The name you'll use to refer to the font */
+    src: url('/app/fonts/Monsteratt/Montserrat-VariableFont_wght.ttf') format('truetype'); /* Path to your .ttf file */
+    
+}
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: "AwtsmoosifcationMonsterrat";
+      margin: 0;
+      background-color: background(url)
+      
+    }
+    .label {
+      padding-left: 16px;
+  }
+
+.checkbox-container
+ .checkbox.checked {
+   border-radius:10px;
+   background-color:#847dd2;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color:white;
+   }
+
+.checkbox.checked::after {
+  content: '\2713'; /* Unicode for checkmark */
+  font-size: 100%; /* Adjust to fill the container */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  .checkbox-container:hover  {
+
+    cursor:pointer;
+    border-color:#afabd6
+    background:#dedede
+  }
+.input-holder .label {
+    padding-left: 0px;
+    padding-bottom: 10px;
+}
+.input-holder {
+    padding: 25px 0;
+    box-sizing: border-box;
+}
+
+  .logo {
+    padding-top: 50px;
+    height: 150px;
+    margin-top: 20px;
+    /* padding-bottom: 25px; */
+}
+
+  .profile {
+    padding-bottom: 25px;
+}
+.img-container img {max-width: 100%;max-height: 100%;object-fit: contain;}
+  .img-container {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    background-position: 50px;
+    /* background: url("./img/logo.png") no-repeat; */
+    /* background-size: contain; */
+}
+
+:root {
+    --dash-height: 100px; /* Height of each dash */
+    --gap-height: 57px; /* Height of the gap between dashes */
+    --line-width: 40px; /* Width of the line */
+  }
+    .container  * {
+      z-index:1;
+    }
+
+    .container {
+      width: 400px; 
+      display: flex;
+      /*min-width: 400px;*/
+      padding: 0 25px 75px 25px;
+      background-position-y: t;
+      box-sizing: border-box;
+      background-color: #edecdf;
+      height: 100%;
+      overflow: scroll;
+      border-right: 7px solid #fddc26;
+      border-left: 7px solid #fddc26;
+      align-content: space-around;
+      flex-direction: column;
+      padding-bottom: 100px;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      z-index:0 !important;
+      left: 50%; /* Center the line horizontally */
+      transform: translateX(-50%);
+      width: var(--line-width); /* Use variable for the line width */
+      height: 100%; /* Full height of the road */
+      background: repeating-linear-gradient(
+        to bottom,
+        #f5f5ed 0,
+        #f5f5ed var(--dash-height), /* Dash length */
+        transparent var(--dash-height), /* Start of the gap */
+        transparent calc(var(--dash-height) + var(--gap-height)) /* Total length of one dash + gap */
+      );
+    }
+
+    /* Styling for Button */
+    .button {
+    
+    
+/* UI Properties */
+    background: #B5AFFF 0% 0% no-repeat padding-box;
+    border-radius: 15px;
+    opacity: 1;
+    padding: 18px 0;
+    text-align: center;
+   
+    padding: 10px;
+    letter-spacing: 0.6px;
+    font-weight: 900;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    }
+
+    /* Styling for Checkbox */
+    .checkbox-container {
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+    }
+    .checkbox {
+      width: 30px;
+      border-radius: 50%;
+      background: white;
+      height: 30px;
+      border: 2px solid #847dd2;
+    }
+    .checkbox-container:nth-child(1) { top: 300px; left: 24px; }
+    .checkbox-container:nth-child(2) { top: 260px; left: 24px; }
+    .checkbox-container:nth-child(3) { top: 220px; left: 24px; }
+
+    /* Styling for Input Field */
+    .input-field {
+      width: 100%;
+      outline: none;
+      height: 63px;
+      box-sizing: border-box;
+      font-size: 1em;
+      color: #C4C4C4;
+      padding-bottom: 15px;
+      padding-top: 15px;
+      border-radius: 50px;
+      border: 2px solid #847dd2;
+      padding-left: 26px;
+    }
+
+    .btn:hover {
+
+      cursor:pointer
+    }

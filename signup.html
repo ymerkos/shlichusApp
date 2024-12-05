@@ -1,0 +1,104 @@
+<!--B"H-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+  <script src="./signin.js"></script>
+  <link rel="manifest" href="/app/manifest.json">
+  <meta name="theme-color" content="#000000">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="./servicer.js"></script>
+</head>
+<body>
+  <div class="container">
+  <div class="profile img-container">
+    <img src="./img/profile.png">
+  </div>
+  <div id="errorMsg">
+
+      </div>
+    <!-- Input Field -->
+    <div class="input-holder">
+     <div class="label">Name</div>
+    <input type="text" id="myName" class="input-field" placeholder="Enter name here">
+  </div>
+
+  <div class="input-holder">
+    <div class="label">Email</div>
+    <input type="text" id="myEmail" class="input-field" placeholder="Enter email here">
+  </div>
+
+  <div class="input-holder">
+    <div class="label">Shliach's Email</div>
+    <input type="text" id="shliachEmail" class="input-field" placeholder="Enter text here">
+  </div>
+
+  <div class="input-holder">
+    <div class="label">Password</div>
+    <input type="password" id="myPassword" class="input-field" placeholder="Enter text here">
+  </div>
+    <!-- Checkboxes -->
+    <div  class="checkbox-container">
+      <div data-type="radial" class="checkbox"></div>
+       <div class="label">Male</div>
+    </div>
+    
+ <div class="checkbox-container">
+      <div data-type="radial" class="checkbox"></div>
+       <div class="label">Female</div>
+    </div>
+    <!-- Button -->
+    <div class="button btn" id="signup">Sign Up</div>
+    <div class="logo img-container"><img src="./img/logo.png"></div>
+    <div class="button btn" id="signin">Sign In</div>
+  </div>
+  <script src="./nav.js"></script>
+  <script>
+        //B"H
+        var base = "https://awtsmoos.42web.io/";
+        var signup = document.getElementById("signup");
+        var signin = document.getElementById("signin");
+        signin.onclick = () => {
+            location.href = "./sign-in.html"
+        };
+
+        signup.onclick = async () => {
+            var a = await (
+                await fetch(base, {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        action: "signup",
+                        name: myName.value,
+                        email: myEmail.value,
+                        shliach: shliachEmail.value,
+                        password:myPassword.value
+                    })
+                })
+            ).json();
+            if(a.success) {
+                location.href = "./settings.html"
+            } else {
+                errorMsg.textContent = "There was an issue loggin in "
+                    + (a?.error || "")
+            }
+            console.log(a);
+        }
+
+        (async () => {
+            var sesh = await (
+                await fetch(location.origin, {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        action: "session"
+                    })
+                })
+            ).json();
+            if(sesh.success) {
+                location.href = "./settings.html"
+            }
+        })();
+  </script>
+</body>
+</html>

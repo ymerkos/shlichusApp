@@ -1,0 +1,253 @@
+<!--B"H-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG to HTML Form</title>
+  <link rel="manifest" href="/app/manifest.json">
+  <meta name="theme-color" content="#000000">
+   <link rel="stylesheet" type="text/css" href="./milestoneStyles.css">
+<script src="./servicer.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <div class="container">
+      <div class="milestone-holder">
+        <div class="milestone-header">
+            <div class="milestone-info">
+                <div class="milestone-logo">
+                    <img class="arrow" src="./img/arrow.svg">
+                    <div class="miles-number" id="milesNum">4 m</div>
+                </div>
+                <div class="milestone-header-text">
+                    <div>Milestones</div>
+                </div>
+            </div>
+            <div class="milestone-message">
+                Choose your daily milestones
+            </div>
+        </div>
+        <div class="milestone-list-container">
+            <div class="milestone-list" id="mList">
+                <div class="milestone">
+                    <div class="milestone-label">
+                        Put on Teffilin
+                    </div>
+                    <div class="milestone-check">
+                        <div class="checkbox"></div>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-label">
+                        Put on Teffilin
+                    </div>
+                    <div class="milestone-check">
+                        <div class="checkbox"></div>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-label">
+                        Put on Teffilin
+                    </div>
+                    <div class="milestone-check">
+                         <div class="checkbox"></div>
+                    </div>
+                </div>
+                <div class="milestone-list-more">
+                    <img class="btn" src="./img/scroll-arrow.svg">
+                </div>
+            </div>
+        </div>
+
+        <div class="milestone-settings">
+            <img src="./img/start-btn.svg" id="startBtn" class="start btn">
+            </img>
+        </div>
+      </div>
+  </div>
+  <script src="./nav.js"></script>
+  <script>
+      //B"H
+      var startBtn = document.querySelector("#startBtn");
+
+    var m = document.querySelector("#mList");
+
+    var mn = document.getElementById("milesNum");
+      try {
+        
+        (async () => {
+                
+                m.innerText = "Loading milestones..."
+                mn.textContent = "...";
+                try {
+                    var sesh = await (
+                        await fetch(location.origin, {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                action: "session"
+                            })
+                        })
+                    ).json();
+                    if(sesh.success) {
+                        window.SESSION = sesh.success;
+                        if(SESSION?.name) {
+                            var user = document.getElementById("username");
+                            user.textContent = SESSION.name;
+                        }
+                    }
+                } catch(e) {
+                    console.log(e);
+                    
+                }
+
+                var mile = null;
+                try {
+                    mile = //B"H
+                        await (await fetch(location.origin +"/?"+ new URLSearchParams({
+                            type: "default"
+                        }), {
+                            method: "POST",
+                            body: new URLSearchParams(
+                            
+                            {
+                                action: "read-milestones",
+                                
+                                
+                            })
+                        })).json();
+                } catch(e) {
+                    m.textContent = "Problem loading";
+                    console.log(e)
+                }
+                try {
+                    if(Array.isArray(mile)) {
+                        var selected = (await getSelectedMilestones())?.result || [];
+                        console.log(window.sl = selected);
+                        window.milestoneData = mile;
+                        m.innerText = ""
+                        mile.forEach(mi => {
+                            // Create the main milestone div
+                            const milestone = document.createElement("div");
+                            milestone.classList.add("milestone");
+
+                            milestone.dataset.id = mi.id;
+                            var milestoneMainArea = document.createElement("div")
+                            milestoneMainArea.className = "visible-area";
+                            milestone.appendChild(milestoneMainArea);
+                            
+                            var milestoneMessage = document.createElement("div");
+                            milestoneMessage.className = "msg collapsed";
+                            milestone.appendChild(milestoneMessage);
+                            milestoneMessage.textContent = mi.description;
+                            milestoneMainArea.onclick = (e) => {
+                                if(e.target.classList.contains("checkbox")) {
+                                    return;
+                                }
+                                milestoneMessage.classList.toggle("collapsed")
+                            }
+                            // Create the milestone-label div
+                            const milestoneLabel = document.createElement("div");
+                            milestoneLabel.classList.add("milestone-label");
+                            milestoneLabel.textContent = mi.headline;
+
+                            // Create the milestone-check div
+                            const milestoneCheck = document.createElement("div");
+                            milestoneCheck.classList.add("milestone-check");
+
+                            // Create the checkbox div
+                            const checkbox = document.createElement("div");
+                            checkbox.classList.add("checkbox");
+
+                            // Append the checkbox to the milestone-check div
+                            milestoneCheck.appendChild(checkbox);
+                            var sel = selected?.find(w=>w?.milestone_selection == mi.id);
+                            console.log(sel,selected,mi)
+                            if(sel) {
+                                checkbox.classList.add("checked")
+                            }
+                            // Append the milestone-label and milestone-check divs to the main milestone div
+                            milestoneMainArea.appendChild(milestoneLabel);
+                            milestoneMainArea.appendChild(milestoneCheck);
+
+                           // console.log(window.a=m)
+                            // Append the milestone div to the body or any other parent element
+                            m.appendChild(milestone);
+                        })
+                        mn.textContent = mile.length + " m";
+                    }
+
+                    navify()
+                } catch(e) {
+                    m.innerText = "Problem initializing"
+                    console.log(e);
+                }
+                
+            })();
+            if(startBtn) {
+                startBtn.onclick = async () => {
+                    var res = await saveCheckedMilestones();
+                    if(res) {
+                        m.innerText = "Saved milestones! Redirecting...";
+                        location.href="/app/view-milestones.html"
+                    }
+                }   
+            }
+      } catch(e) {
+          m.textContent = "There was a problem loading. "
+          
+          console.log(e)
+      }
+
+
+        async function saveCheckedMilestones() {
+            var chk = getCheckedMilestones().map(w=>w.id);
+            try {
+                //B"H
+                var g = await (
+                    await fetch(location.origin, {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            action: "select-milestones",
+                            milestones: JSON.stringify(chk)
+                        })
+                    })
+                ).json()
+                return g;
+            } catch(e) {
+                console.log(e);
+                return null;
+            }
+        }
+
+        async function getSelectedMilestones() {
+            //B"H
+            try {
+                var g = await (
+                    await fetch(location.origin, {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            action: "get-milestone-selections"
+                        })
+                    })
+                ).json()
+                return g;
+            } catch(e) {
+                console.log(e);
+                return []
+            }
+        }
+      function getCheckedMilestones() {
+          //B"H
+            if(!window.milestoneData) {
+                return console.log("no milestone data");
+            }
+            var ch =Array.from(document.querySelectorAll(".checked"))
+            .map(w=>( w.parentNode.parentNode.parentNode.dataset.id
+            ))
+            return milestoneData.filter(w=>ch.includes(w.id))
+
+      }
+  </script>
+</body>
+</html>

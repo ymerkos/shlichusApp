@@ -1,0 +1,89 @@
+<!--B"H-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In to Shlichus</title>
+  <link rel="manifest" href="https://ymerkos.github.io/shlichusApp/manifest.json?as=2">
+  <meta name="theme-color" content="#000000">
+  <script src="./servicer.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <div class="container">
+  <div class="profile img-container">
+    <img src="./img/profile.png">
+  </div>
+ 
+<div id="errorMsg">
+
+</div>
+  <div class="input-holder">
+    <div class="label">Email</div>
+    <input type="text" id="email" class="input-field" placeholder="Enter email here">
+  </div>
+
+
+  <div class="input-holder">
+    <div class="label">Password</div>
+    <input type="password" id="password" class="input-field" placeholder="Enter Password here">
+  </div>
+
+    <!-- Button -->
+    <div class="button btn" id="login">Login</div>
+   
+     
+    <div class="logo img-container"><img src="./img/logo.png"></div>
+    <div class="button btn" id="signup">Sign Up</div>
+  </div>
+  <script src="./signin.js"></script>
+  <script>
+            console.log('B\"H', "\n\n\n")
+    var sign = document.getElementById("login");
+    var up = document.getElementById("signup");
+    if(up) {
+        up.onclick = () => {
+            location.href="signup.html";
+        }
+    }
+    if(sign) {
+        sign.onclick = async () => {
+            var log = await (
+                await fetch(
+                    location.origin, {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            action: "login",
+                            email: email.value,
+                            password: password.value
+                        })
+                    }
+                )
+            ).json();
+
+            console.log(sign);
+            if(log?.success)
+                location.href = "./settings.html";
+            else {
+                errorMsg.innerText = "Could not log in. " +
+                    log?.error || "";
+            }
+        }
+    }
+    (async () => {
+        var sesh = await (
+            await fetch(location.origin, {
+                method: "POST",
+                body:new URLSearchParams({
+                    action: "session"
+                })
+            })
+        ).json();
+        if(sesh.success) {
+            location.href = "./settings.html"
+        }
+    })();
+</script>
+</body>
+</html>

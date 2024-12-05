@@ -1,0 +1,119 @@
+/*B"H*/
+body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: background(url)
+      
+    }
+
+.collapsed {
+    max-height: 0px !important;
+    overflow: hidden; /* Hide content when collapsed */
+    transition: max-height 0.5s ease-out; /* Smooth animation */
+}
+.reminder-container {
+    position: absolute;
+    z-index: 12;
+        gap: 25px;
+    max-height:100%;
+    border-radius:25px 25px 0 0;
+    display:flex;
+    align-self: end;
+    min-width: 400px;
+    flex-direction:column;
+    align-items: center;
+    background: #EDECDF;
+    transition: max-height 0.5s ease-in-out; /* Smooth animation */
+}
+
+.reminder-header {
+    display:flex;
+    flex-direction:row;
+}
+
+.rem-label {
+    display:flex;
+    align-items: center;
+    gap: 15px;
+    flex-direction:row;
+
+}
+.rem-txt {
+    color:#6db63c;
+    font-family: sans-serif;
+    font-size:25px;
+    user-select:none;
+    font-weight:bold;
+}
+
+.null {
+    opacity:0;
+}
+.btn:hover {
+    cursor:pointer;
+}
+.reminder-time-select {
+       display: flex;
+       gap: 25px;
+       user-select:none;
+       flex-wrap: wrap; /* Ensures items wrap if they overflow */
+       border: 3px solid #8079d1;
+       background: white;
+       padding: 25px 50px;
+       border-radius: 25px;
+       overflow: hidden;
+       max-height: 200px;
+       box-sizing: border-box; /* Ensures padding is included in the size */
+   }
+.reminder-time-select .sel::-webkit-scrollbar{
+    display: none;
+  }
+   .reminder-time-select .sel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 25px;
+    font-weight: bolder;
+    box-sizing: border-box;
+    color: #d0cdec;
+    padding: 0 20px; /* Remove extra padding to avoid misalignment */
+    gap: 0; /* Remove gap to align elements properly */
+    overflow-y: scroll;
+    height: 150px;
+    min-width: 0;
+    scroll-snap-type: y mandatory;
+}
+.reminder-time-select .sel .col.highlighted {
+    color: #8079d1;
+}
+.reminder-time-select .sel .col {
+    scroll-snap-align: start;
+    height: 50px; /* Ensure consistent height for snapping */
+    width: 25px;
+    line-height: 50px; /* Vertically center text */
+    text-align: right; /* Center text horizontally */
+}
+
+.reminder-drag {
+    height:25px;
+    display:flex;
+    align-items: center;
+}
+
+.rem-btm {
+    padding-bottom:50px
+}
+
+.time-holder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.colin {
+    font-size:35px;
+    color:#8079d1;
+}

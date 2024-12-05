@@ -1,0 +1,299 @@
+/**B"H**/
+
+.milestone-holder {
+    border-top: n;
+    display:flex;
+    flex-direction:column;
+  
+    flex: 1;
+    gap: 50px;
+}
+
+.milestone-header {
+    display:flex;
+    flex-direction:column;
+    border-radius:0 0 25px 25px;
+    overflow:hidden;
+    border:3px solid white;
+}
+
+.milestone-info {
+    display:flex;
+    flex-direction:row;
+    padding-top:20px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom:15px;
+    background: #57ad21;
+    color:white;
+    justify-content: space-around
+
+}
+
+
+
+
+.milestone-logo {
+    display:flex;
+    flex-direction: column;
+}
+
+.milestone {
+    position:relative;
+}
+
+
+.milestone .msg {
+    background: white;
+    padding: 25px 15px;
+    margin-top: -15px;
+    position: relative;
+    top: -5px;
+    z-index: 1;
+    border-radius: 0 0 25px 25px;
+    transition: all 0.4s ease;
+}
+
+.msg.collapsed {
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0;
+    transition: all 0.4s ease;
+}
+
+.milestone:hover {
+    cursor: pointer;
+}
+
+
+.milestone .visible-area{
+    background: #66cc26;
+    border:3px solid white;
+    border-radius:25px;
+    user-select: none;
+    position:relative;
+    padding:15px;
+    color: #4E4E4E;
+    z-index:3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.milestone.completed .visible-area {
+    background: white;
+    border:1px solid black;
+}
+
+
+.milestone-list {
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.milestone-message {
+    padding:15px;
+    background: #66cc26;
+    color:white
+}
+
+.milestone-settings {
+    display:flex;
+    justify-content: space-around;
+    margin-top:auto;
+}
+
+.milestone-list-more {
+    display:flex;
+    justify-content: space-around;
+}
+
+.milestone-header-text {
+    display: flex;
+    flex: 0.8;
+    font-size: 25px;
+    align-items: flex-end
+
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.checkbox {
+    cursor:pointer;
+    box-sizing: border-box; !important;
+}
+
+.checkbox.checked {
+    border: 6px solid #8079D1 !important;
+    
+    border-radius: 50%;
+    content:"" !important;
+}
+
+.checkbox.checked::after {
+    content:"" !important
+}
+
+.milestone-metadata {
+    display:flex;
+    flex-direction:column;
+}
+
+.btn-holder {
+    display:flex;
+    justify-content:space-around;
+}
+
+.btn-holder.togo {
+        margin-bottom: 25px;
+}
+
+.milestone-profile-info {
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    color:#8079D1;
+    gap:15px;
+}
+
+.nav.btn {
+    color:#8079D1;
+    padding:8px 25px;
+    border:1px solid #8079D1;
+    background:white;   
+    border-radius:25px;
+    font-weight:bold;
+     font-size:16px; 
+}
+
+.nav.btn:hover {
+    color:#8079D1;
+    
+    border:1px solid #8079D1;
+    background:lightgrey;  
+   
+    font-weight:bold;
+}
+
+.milestone-more-settings {
+    display: flex;
+    justify-content: space-around;
+}
+
+.centered-img {
+    position:relative;
+
+    display: flex;
+
+}
+
+.centered-in-img {
+
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+
+
+#completedMilestones {
+    margin-top:35px;
+}
+
+
+.checkcircle::after {
+    content: '\2713';
+    font-size: 100%;
+    color: white;
+    display: flex;
+    background: #7f7ad0;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+#submitArea img {
+    max-height:100px;
+}
+#submitArea {
+    position: fixed;
+    border-radius: 25px 25px 0px 0px;
+    padding: 25px;
+    left: 50%;
+    box-sizing: border-box;
+    transform: translateX(-50%);
+    bottom: 0px;
+    width: 400px;
+    padding-bottom: 50px;
+    z-index: 79;
+    background: #edecdf;
+
+    box-shadow: 0px 3px 6px #00000029;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 100%;
+    transition: max-height 1s ease;
+}
+
+.submitBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea:active {
+    border:none;
+}
+textarea.story {
+    width:125%;
+    outline:none;
+    resize:none;
+    height:200px;
+    border:none;
+    padding:23px;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+textarea.story:hover {
+   /* cursor:crosshair;*/
+}
+.submit-title {
+    color: #57AD21;
+    pointer-events: none;
+    font-weight:bold;
+    font-size:30px;
+}
+
+.submitStory {
+    margin-top: 30px;
+}
+
+.dragbar {
+    margin-bottom:50px;
+    width:65px;
+    height:5px;
+    background:white;
+    border-radius:10px;
+    
+}
+
+img,
+.submit-title {
+    user-select: none;
+    
+}
+
+
+.clapst {
+    max-height: 0px !important;
+
+    padding: 0px !important;
+    transition: max-height 1s ease, padding 1s ease;
+}
