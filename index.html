@@ -39,6 +39,7 @@
   </div>
   <script src="./signin.js"></script>
   <script>
+    var baseURL = "https://awtsmoos.42web.io/";
             console.log('B\"H', "\n\n\n")
     var sign = document.getElementById("login");
     var up = document.getElementById("signup");
@@ -51,7 +52,7 @@
         sign.onclick = async () => {
             var log = await (
                 await fetch(
-                    location.origin, {
+                    baseURL, {
                         method: "POST",
                         body: new URLSearchParams({
                             action: "login",
@@ -73,7 +74,7 @@
     }
     (async () => {
         var sesh = await (
-            await fetch(location.origin, {
+            await fetch(baseURL, {
                 method: "POST",
                 body:new URLSearchParams({
                     action: "session"
