@@ -5,7 +5,7 @@ console.log(
     "\nMade by Yackov Yitzchak Kaufer",
     "\nAwtsmoos.com"
 );
-var baseURL = "http://awtsmoos.42web.io/"
+var baseURL = "https://awtsmoos.whf.bz";
 
 // Define the functions based on the user's provided code
 async function postData(url = '', data = {}) {
