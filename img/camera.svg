@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="79" height="79" viewBox="0 0 79 79">
+  <defs>
+    <filter id="Ellipse_5" x="0" y="0" width="79" height="79" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_530" data-name="Group 530" transform="translate(-299 -647)">
+    <g transform="matrix(1, 0, 0, 1, 299, 647)" filter="url(#Ellipse_5)">
+      <circle id="Ellipse_5-2" data-name="Ellipse 5" cx="30.5" cy="30.5" r="30.5" transform="translate(9 6)" fill="#fff"/>
+    </g>
+    <g id="Icon_ion-camera" data-name="Icon ion-camera" transform="translate(323.327 671.114)">
+      <path id="Path_10183" data-name="Path 10183" d="M18.043,14.49a4.334,4.334,0,1,1-4.334-4.334A4.334,4.334,0,0,1,18.043,14.49Z" transform="translate(1.46 -1.488)" fill="#8079d1"/>
+      <path id="Path_10184" data-name="Path 10184" d="M28.651,8.24h-4A.989.989,0,0,1,24,7.9L22.247,5.129A1.051,1.051,0,0,0,22.154,5a3.017,3.017,0,0,0-2.307-1.1h-6.23A3.017,3.017,0,0,0,11.309,5a1.051,1.051,0,0,0-.093.125L9.46,7.906a.887.887,0,0,1-.584.339V7.7A1.084,1.084,0,0,0,7.793,6.619H6.167A1.084,1.084,0,0,0,5.084,7.7v.542H4.813a3.254,3.254,0,0,0-3.251,3.251v13a3.254,3.254,0,0,0,3.251,3.251H28.651A3.254,3.254,0,0,0,31.9,24.493v-13A3.254,3.254,0,0,0,28.651,8.24ZM16.732,23.41a6.5,6.5,0,1,1,6.5-6.5A6.5,6.5,0,0,1,16.732,23.41Z" transform="translate(-1.562 -3.906)" fill="#8079d1"/>
+    </g>
+  </g>
+</svg>

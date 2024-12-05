@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45.563" height="46.303" viewBox="0 0 45.563 46.303">
+  <defs>
+    <filter id="Icon_ion-settings-sharp" x="0" y="0" width="45.563" height="46.303" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#5c4bba" flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Icon_ion-settings-sharp)">
+    <path id="Icon_ion-settings-sharp-2" data-name="Icon ion-settings-sharp" d="M20.035,14.308a4.922,4.922,0,1,0,4.922,4.922,4.922,4.922,0,0,0-4.922-4.922ZM30.662,19.23a10.185,10.185,0,0,1-.1,1.375l3,2.345a.713.713,0,0,1,.162.909l-2.834,4.893a.716.716,0,0,1-.87.3L26.493,27.64A10.863,10.863,0,0,1,24.1,29.035l-.527,3.74a.734.734,0,0,1-.708.607H17.2a.738.738,0,0,1-.708-.586l-.527-3.74a10.417,10.417,0,0,1-2.389-1.4l-3.523,1.415a.716.716,0,0,1-.87-.3L6.351,23.88a.713.713,0,0,1,.162-.909l3-2.345a10.742,10.742,0,0,1-.1-1.395,10.185,10.185,0,0,1,.1-1.375l-3-2.345a.713.713,0,0,1-.162-.909L9.185,9.708a.716.716,0,0,1,.87-.3l3.523,1.415a10.864,10.864,0,0,1,2.389-1.395l.527-3.74a.734.734,0,0,1,.708-.607h5.668a.738.738,0,0,1,.708.586L24.1,9.4A10.417,10.417,0,0,1,26.5,10.8l3.519-1.415a.716.716,0,0,1,.87.3l2.834,4.893a.713.713,0,0,1-.162.909l-3,2.345A10.742,10.742,0,0,1,30.662,19.23Z" transform="translate(2.75 0.92)" fill="#4e4e4e"/>
+  </g>
+</svg>

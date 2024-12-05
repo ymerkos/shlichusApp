@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="115" height="43" viewBox="0 0 115 43">
+  <g id="Group_519" data-name="Group 519" transform="translate(-137 -767)">
+    <g id="Rectangle_1518" data-name="Rectangle 1518" transform="translate(137 767)" fill="#fff" stroke="#8079d1" stroke-width="1.5">
+      <rect width="115" height="43" rx="21.5" stroke="none"/>
+      <rect x="0.75" y="0.75" width="113.5" height="41.5" rx="20.75" fill="none"/>
+    </g>
+    <text id="Start" transform="translate(202 793)" fill="#8079d1" font-size="13" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.05em"><tspan x="-18" y="0">Start</tspan></text>
+    <path id="Icon_material-navigation" data-name="Icon material-navigation" d="M14.525,3.333,7.5,20.466l.665.665,6.36-2.81,6.36,2.81.665-.665Z" transform="translate(156.923 776.158)" fill="#8079d1"/>
+  </g>
+</svg>

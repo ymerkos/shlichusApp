@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.843" height="26.103" viewBox="0 0 26.843 26.103">
+  <g id="Group_525" data-name="Group 525" transform="translate(-48 -546.46)">
+    <path id="Icon_ion-md-notifications" data-name="Icon ion-md-notifications" d="M15.845,26.43A2.269,2.269,0,0,0,18.1,24.162H13.588A2.269,2.269,0,0,0,15.845,26.43Zm7.338-6.8V13.389a7.35,7.35,0,0,0-5.644-7.144V5.451a1.693,1.693,0,1,0-3.387,0v.794a7.35,7.35,0,0,0-5.644,7.144v6.237L6.25,21.894v1.134H25.441V21.894Z" transform="translate(41.75 546.133)" fill="#8079d1"/>
+    <path id="Icon_ion-time" data-name="Icon ion-time" d="M10.862,3.75a7.112,7.112,0,1,0,7.112,7.112A7.112,7.112,0,0,0,10.862,3.75Zm3.282,8.206H10.862a.547.547,0,0,1-.547-.547V6.485a.547.547,0,0,1,1.094,0v4.376h2.735a.547.547,0,0,1,0,1.094Z" transform="translate(56.329 543.25)" fill="#8079d1" stroke="#fff" stroke-width="1.08"/>
+  </g>
+</svg>
