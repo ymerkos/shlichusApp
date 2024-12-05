@@ -1,0 +1,484 @@
+<!--B"H-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Milestones</title>
+  <script src="./servicer.js"></script>
+   <link rel="stylesheet" type="text/css" href="./milestoneStyles.css">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+  <div class="container">
+      <div class="milestone-holder">
+        <div class="milestone-header">
+            <div class="milestone-info">
+                <div class="milestone-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53">
+                    <g id="Group_523" data-name="Group 523" transform="translate(-79 -44)">
+                      <rect id="Rectangle_1533" data-name="Rectangle 1533" width="53" height="53" rx="8" transform="translate(79 44)" fill="#fff"/>
+                      <g id="Rectangle_1531" data-name="Rectangle 1531" transform="translate(80 45)" fill="#fff" stroke="#4e4e4e" stroke-width="1.5">
+                        <rect width="51" height="51" rx="7" stroke="none"/>
+                        <rect x="0.75" y="0.75" width="49.5" height="49.5" rx="6.25" fill="none"/>
+                      </g>
+                      <text id="pointVal" data-name="3" transform="translate(99 73)" fill="#4e4e4e" font-size="23" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.05em"><tspan x="0" y="0" id="awtsmoosPoints">...</tspan></text>
+                      <text id="Points" transform="translate(90 86)" fill="#4e4e4e" font-size="9" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.05em"><tspan x="0" y="0">Points</tspan></text>
+                    </g>
+                  </svg>
+                </div>
+                <div class="milestone-header-text">
+                    <div>Milestones</div>
+                </div>
+            </div>
+            <div class="milestone-message">
+                My Daily Milestones
+            </div>
+        </div>
+        <div class="milestone-list-container">
+            <div class="milestone-metadata">
+                <div class="milestone-profile-info">
+                    <img src="./img/profile.png">
+                    <div class="profile-greeting">
+                        Hey <span id="username"></span>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="togoMilestones">
+                <div class="btn-holder togo">
+                <img class="togo" src="./img/toGoBtn.svg">
+                </div>
+                <div class="milestone-list">
+                    
+                </div>
+                <!--
+                <div class="milestone-list-more">
+                    <img class="btn" src="./img/scroll-arrow.svg">
+                </div>
+                -->
+            </div>
+
+             
+
+            <div id="completedMilestones">
+                <div class="milestone-settings">
+                    <img src="./img/completeBtn.svg" class="complete">
+                    
+                    </img>
+                </div>
+                <div class="milestone-list">
+                    
+                </div>
+                <!--`
+                <div class="milestone-list-more">
+                    <img class="btn" src="./img/scroll-arrow.svg">
+                </div>-->
+            </div>
+            
+        </div>
+
+       
+
+        <div class="milestone-more-settings">
+            <img src="./img/notifications.svg" id="notifBtn" class="notifications btn">
+            </img>
+            <div class="centered-img">
+              <img src="./img/stopSign.svg" class="add btn">
+              </img>
+              <img src="./img/plus.svg" id="addMile" class="centered-in-img btn">
+              </img>
+            </div>
+            <img src="./img/settings.svg" id="settingsBtn" class="settings btn">
+            </img>
+        </div>
+      </div>
+
+    <div id="submitArea" class="clapst">
+        <div class="dragbar"></div>
+        <div class="submitPicture submitBox">
+            <div class="submit-title">
+                Submit picture
+            </div>
+            <div id="pictureSubmitted"></div>
+            <img src="./img/camera.svg" id="cameraUpload" class="camera btn">
+        </div>
+
+        <div class="submitStory submitBox">
+            <div class="submit-title">
+                Submit story 
+            </div>
+            <textarea placeholder="Type here your story" class="story"></textarea>
+        </div>
+        <br>
+        <br>
+
+         <div class="button btn" id="submit">Submit</div>
+    </div>  
+  </div>
+  <script src="./nav.js"></script>
+  <script>
+      var storyTxt = document.querySelector("textarea.story");
+      var cameraUpload = document.querySelector("#cameraUpload");
+      var submitArea = document.getElementById("submitArea"); 
+      var pictureSubmitted = document.querySelector("#pictureSubmitted");
+      makeDraggable("#submitArea");
+      var submitBtn = document.querySelector("#submit");
+      var addMile = document.getElementById("addMile");
+      addMile.onclick = () => {
+          location.href = "./milestones-view.html"
+      }
+      var settingsBtn = document.getElementById("settingsBtn");
+      settingsBtn.onclick = () => {
+          location.href = "./settings.html"
+      }
+      var notifBtn = document.getElementById("notifBtn");
+      notifBtn.onclick = () => {
+          alert("Notifications")
+          //location.href = "./settings.html"
+      }
+
+
+    
+    (async () => {
+        var sesh = await (
+            await fetch(location.origin, {
+                method: "POST",
+                body: new URLSearchParams({
+                    action: "session"
+                })
+            })
+        ).json();
+        if(sesh.success) {
+            window.SESSION = sesh.success;
+            if(SESSION?.name) {
+                var user = document.getElementById("username");
+                user.textContent = SESSION.name;
+            }
+        }
+
+        await refreshMilestonesList();
+        
+    })();
+
+    async function refreshMilestonesList() {
+        var toGoDiv = document.querySelector("#togoMilestones .milestone-list");
+        var completedDiv = document.querySelector("#completedMilestones .milestone-list")
+        
+
+        var awtsmoosPoints = document.querySelector("#awtsmoosPoints")
+        toGoDiv.innerHTML = "";
+
+        completedDiv.innerHTML = "Loading..."
+        var selected = await getSelectedMilestones();
+        var completed = (await getCompletedMilestones());
+        awtsmoosPoints.innerHTML = completed.length;
+        window.compl=completed=completed;
+        window.selected=selected;
+
+        console.log(
+            `B"H`,
+            "\n",
+            window.sl= selected
+        );
+        selected.forEach(s => {
+            if(completed.find(w =>
+                s.milestone_selection ==
+                w.milestoneId 
+            )) {
+                return;
+            }
+
+            const body = toGoDiv;
+            const el19afhp = document.createElement('div');
+            el19afhp.classList.add('milestone');
+            body.appendChild(el19afhp);
+
+            const elsfz74k = document.createElement('div');
+            elsfz74k.classList.add('visible-area');
+            el19afhp.appendChild(elsfz74k);
+
+            const elndxlr8 = document.createElement('div');
+            elndxlr8.classList.add('milestone-label');
+            elndxlr8.innerHTML = s.details.headline
+            elsfz74k.appendChild(elndxlr8);
+
+            const elif4xpo = document.createElement('div');
+            elif4xpo.classList.add('milestone-check');
+            elsfz74k.appendChild(elif4xpo);
+
+            var milestoneMessage = document.createElement("div");
+            milestoneMessage.className = "msg collapsed";
+            el19afhp.appendChild(milestoneMessage);
+            milestoneMessage.textContent = s.details.description;
+            elsfz74k.onclick = (e) => {
+                if(e.target.classList.contains("checkbox")) {
+                    return;
+                }
+                milestoneMessage.classList.toggle("collapsed")
+            }
+
+            const el8uprp2 = document.createElement('div');
+            el8uprp2.classList.add('nav', 'btn');
+            el8uprp2.innerHTML = `Done`;
+            el8uprp2.onclick = () => {
+                window.milestoneId = s.milestone_selection;
+                submitArea.classList.remove("clapst")
+            }
+            elif4xpo.appendChild(el8uprp2);
+        })
+        completed.forEach(s => {
+            var sel = selected.find(w =>
+                w.milestone_selection ==
+                s.milestoneId 
+            ); 
+            if(!sel) return;
+            
+            const body = completedDiv;
+            const el19afhp = document.createElement('div');
+            el19afhp.classList.add('milestone', "completed");
+            body.appendChild(el19afhp);
+
+            const elsfz74k = document.createElement('div');
+            elsfz74k.classList.add('visible-area');
+            el19afhp.appendChild(elsfz74k);
+
+            const elndxlr8 = document.createElement('div');
+            elndxlr8.classList.add('milestone-label');
+            elndxlr8.innerHTML = sel.details.headline
+            elsfz74k.appendChild(elndxlr8);
+
+             var milestoneMessage = document.createElement("div");
+            milestoneMessage.className = "msg collapsed";
+            el19afhp.appendChild(milestoneMessage);
+            milestoneMessage.textContent = sel.details.description;
+            elsfz74k.onclick = (e) => {
+                if(e.target.classList.contains("checkbox")) {
+                    return;
+                }
+                milestoneMessage.classList.toggle("collapsed")
+            }
+
+            const elif4xpo = document.createElement('div');
+            elif4xpo.classList.add('milestone-check', 'checkcircle');
+            elsfz74k.appendChild(elif4xpo);
+
+        })
+            
+    }
+
+
+
+    submitBtn.onclick = async () => {
+        if(!window.milestoneId) return;
+        await completeMilestone(milestoneId);
+        await refreshMilestonesList();
+        submitArea.classList.add("clapst")
+    }
+
+    cameraUpload.onclick = async () => {
+        var data = await selectAndReadImagesAsBase64();
+        var c = data.indexOf(",");
+        var base64 = data.slice(c+1);
+       // console.log(data,base64,c);
+        pictureSubmitted.innerHTML = "";
+        var img = document.createElement("img");
+        img.src = data;
+        pictureSubmitted.appendChild(img);
+        //var h = await uploadImgToServer(base64);
+      //  console.log(h)
+        window.imgBase64 = base64;
+    }
+
+    async function uploadImgToServer(base64) {
+        //B"H
+        var g = await (
+            await fetch(location.origin, {
+                method: "POST",
+                body: new URLSearchParams({
+                    img: base64,
+                    action: "img-upload"
+                })
+            })
+        ).json();
+        return g;
+    }
+
+     function selectAndReadImagesAsBase64() {
+        return new Promise((resolve, reject) => {
+            // Create an invisible input element
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*'; // Accept only image files
+            input.multiple = true; // Allow multiple file selection
+
+            // Listen for file selection
+            input.addEventListener('change', () => {
+                const file = Array.from(input.files)[0]; // Get selected files
+                if (!file) {
+                    reject(new Error('No files selected'));
+                    return;
+                }
+
+             
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result); // Resolve with Base64 URL
+                reader.onerror = () => reject(new Error(`Failed to read file: ${file.name}`));
+                reader.readAsDataURL(file); // Read file
+            
+                
+
+            });
+
+            // Simulate a click on the input element to open the file picker
+            input.click();
+        });
+    }
+
+    async function getSelectedMilestones() {
+        //B"H
+        try {
+            var g = await (
+                await fetch(location.origin, {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        action: "get-milestone-selections",
+                        withDetails: true
+                    })
+                })
+            ).json()
+            return g?.result || [];
+        } catch(e) {
+            console.log(e);
+            return []
+        }
+    }
+
+    async function getCompletedMilestones() {
+        //B"H
+        try {
+            var g = await (
+                await fetch(location.origin, {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        action: "get-completed-milestones"
+                    })
+                })
+            ).json()
+        } catch (e) {
+            return({error: e});
+
+        }
+        return g?.result || [];
+    }
+
+    async function completeMilestone(milestoneId) {
+        //B"H
+        try {
+            //
+            var ob = {
+                milestoneId: milestoneId,
+                action: "complete-milestone"
+            };
+            if(window.imgBase64) {
+                ob.imgBase64 = imgBase64;
+            }
+
+            if(storyTxt.value) {
+                ob.storyTxt = storyTxt.value;
+            } else {
+                alert("You need to enter text for the story");
+                return;
+            }
+            var g = await (
+                await fetch(location.origin, {
+                    method: "POST",
+                    body: new URLSearchParams(ob)
+                })
+            ).json()
+            return g;
+        } catch(e) {
+            return {error: e}
+        }
+    }
+
+    function makeDraggable(selector) {
+        var el = document.querySelector(selector)
+        if(!el) return console(el);
+
+        var startPos = null;
+        var startHeight = null;
+        console.log(el);
+        var originalHeight = null;
+        el.addEventListener("mousedown", submutMouseDown);
+
+        el.addEventListener("touchstart", e => {
+            submutMouseDown({
+                target: e.target,
+                clientY: e.touches[0].clientY
+            })
+            console.log(e);
+        })
+
+        el.addEventListener("touchmove", e => {
+            submitMouseMove({
+                target: e.target,
+                clientY: e.touches[0].clientY
+            })
+            console.log(e);
+        })
+        function submutMouseDown(e) {
+            if(e.target.id != "submitArea") {
+            //    e.preventDefault()
+                return;
+            }
+            if(!startPos) {
+                startPos = e.clientY;
+           //     console.log(e);
+            }
+            startHeight = el.clientHeight
+            if(!originalHeight) {
+                originalHeight = startHeight;
+            }
+        }
+        function submitMouseMove(e) {
+            if(e.target.id != "submitArea") {
+                e.preventDefault()
+                return;
+            }
+            if(!startPos) return;
+            if(!startHeight) return;
+            var diff = e.clientY - startPos;
+            var heightDiff = startHeight - diff;
+            e.target.style.height = heightDiff + "px"
+           // console.log(e, diff, startPos);
+            if(heightDiff < 250) {
+                startPos = null;
+                setTimeout(() => {
+                    
+                    pictureSubmitted.innerHTML=""
+                    e.target.style.height = originalHeight
+                    +"px"
+                }, 1050)
+                e.target.classList.add("clapst")
+            }
+        }
+        el.addEventListener("mousemove", 
+        submitMouseMove);
+
+        addEventListener("mouseup", e=> {
+            startPos = null;
+            startHeight = null;
+
+            pictureSubmitted.innerHTML=""
+        });
+
+        addEventListener("touchend", e=> {
+            startPos = null;
+            startHeight = null;
+            pictureSubmitted.innerHTML=""
+        });
+    }
+  </script>
+</body>
+</html>
