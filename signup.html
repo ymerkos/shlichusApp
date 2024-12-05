@@ -57,7 +57,7 @@
   <script src="./nav.js"></script>
   <script>
         //B"H
-        var base = "https://awtsmoos.42web.io/";
+        var base = "https://awtsmoos.whf.bz";
         var signup = document.getElementById("signup");
         var signin = document.getElementById("signin");
         signin.onclick = () => {
@@ -88,7 +88,7 @@
 
         (async () => {
             var sesh = await (
-                await fetch(location.origin, {
+                await fetch(base, {
                     method: "POST",
                     body: new URLSearchParams({
                         action: "session"
