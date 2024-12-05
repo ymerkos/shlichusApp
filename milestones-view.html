@@ -72,7 +72,7 @@
       var startBtn = document.querySelector("#startBtn");
 
     var m = document.querySelector("#mList");
-
+  var baseURL = "https://awtsmoos.whf.bz";
     var mn = document.getElementById("milesNum");
       try {
         
@@ -82,7 +82,7 @@
                 mn.textContent = "...";
                 try {
                     var sesh = await (
-                        await fetch(location.origin, {
+                        await fetch(baseURL, {
                             method: "POST",
                             body: new URLSearchParams({
                                 action: "session"
@@ -104,7 +104,7 @@
                 var mile = null;
                 try {
                     mile = //B"H
-                        await (await fetch(location.origin +"/?"+ new URLSearchParams({
+                        await (await fetch(baseURL +"/?"+ new URLSearchParams({
                             type: "default"
                         }), {
                             method: "POST",
@@ -205,7 +205,7 @@
             try {
                 //B"H
                 var g = await (
-                    await fetch(location.origin, {
+                    await fetch(baseURL, {
                         method: "POST",
                         body: new URLSearchParams({
                             action: "select-milestones",
@@ -224,7 +224,7 @@
             //B"H
             try {
                 var g = await (
-                    await fetch(location.origin, {
+                    await fetch(baseURL, {
                         method: "POST",
                         body: new URLSearchParams({
                             action: "get-milestone-selections"
