@@ -155,13 +155,14 @@
 console.log(
     'B"H',
     "\n\n\n\n"
-)
+);
+var baseURL = "https://awtsmoos.whf.bz";
 var log = document.getElementById("logoutBtn");
 if(log) {
     log.onclick = async () => {
         var lg = await (
             await fetch(
-                location.origin, {
+                baseURL, {
                    method: "POST",
                    body: new URLSearchParams({
                        action: "logout"
@@ -204,7 +205,7 @@ if(log) {
     
     (async () => {
         var sesh = await (
-            await fetch(location.origin, {
+            await fetch(baseURL, {
                 method: "POST",
                 body: new URLSearchParams({
                     action: "session"
