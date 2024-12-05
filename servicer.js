@@ -6,7 +6,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 });
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/app/sw.js')
+  navigator.serviceWorker.register('/shlichusApp/sw.js')
     .then((registration) => {
       console.log('Service Worker registered:', registration);
     })
