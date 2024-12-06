@@ -94,7 +94,7 @@
         </div>
       </div>
 
-    <div id="submitArea" class="clapst">
+    <div id="submitArea" class="clapst notification">
         <div class="dragbar"></div>
         <div class="submitPicture submitBox">
             <div class="submit-title">
@@ -116,6 +116,31 @@
          <div class="button btn" id="submit">Submit</div>
     </div>  
   </div>
+  
+  <div id="notificationWinner" class="clapst notification">
+        <div class="dragbar"></div>
+        <div class="winner headline">
+            
+            
+            <img src="./img/sparkles.svg" id="cameraUpload" class="camera btn">
+          <div class="winner-title">
+                Weekly Winner
+            </div>
+        </div>
+
+        <div class="winner name">
+            Yackov Kaufer
+        </div>
+      <div class="winner-info">
+        <div class="points"></div>
+        <img src="./img/leaderboard.svg">
+      </div>
+        <br>
+        <br>
+
+         <div class="button btn" id="submit">Submit</div>
+    </div>  
+  </div>
   <script src="./nav.js"></script>
   <script>
       var storyTxt = document.querySelector("textarea.story");
@@ -123,6 +148,7 @@
       var submitArea = document.getElementById("submitArea"); 
       var pictureSubmitted = document.querySelector("#pictureSubmitted");
       makeDraggable("#submitArea");
+      makeDraggable("#notificationWinner");
       var submitBtn = document.querySelector("#submit");
       var addMile = document.getElementById("addMile");
       addMile.onclick = () => {
