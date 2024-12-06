@@ -221,7 +221,8 @@
 #submitArea img {
     max-height:100px;
 }
-#submitArea {
+
+.notification {
     position: fixed;
     border-radius: 25px 25px 0px 0px;
     padding: 25px;
@@ -241,7 +242,20 @@
     max-height: 100%;
     transition: max-height 1s ease;
 }
+#submitArea {
+    
+}
 
+    .winner.headline {
+        display:flex;
+        flex-direction:row;
+    }
+
+.winner-title {
+    color:#FC4D4D;
+    font-size:32px;
+    font-weight:bold;
+}
 .submitBox {
     display: flex;
     flex-direction: column;
