@@ -2,7 +2,7 @@
   "name": "Shlichos Tasks",
   "short_name": "Tasks for your Shlihus",
   "start_url": "/shlichusApp/",
-  "id": "/shlichusApp/", // not "/"
+  "id": "/shlichusApp/", 
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
